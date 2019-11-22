@@ -1,4 +1,4 @@
-#include "Servo.h"
+#include <Servo.h>
 #define SERVO 6
 
 Servo s; // Variável Servo
@@ -9,9 +9,8 @@ void setup() {
   pinMode(7, INPUT);
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
-  s.attach(SERVO);
+  s.attach(6);
   s.write(0);
-
   Serial.begin(9600);
 
 }
@@ -36,10 +35,9 @@ void validarBatida() {
   if (numBatidas == 5) {
     Serial.print("numBatidas: ");
     Serial.println(numBatidas);
-    for (pos = 0; pos < 90; pos++) {
-      s.write(pos);
-      delay(15);
-    }
+    s.write(90);
+    delay(1000);
+    s.write(0);
     digitalWrite(8, HIGH);
     delay(500);
     digitalWrite(8, LOW);
@@ -82,13 +80,6 @@ void escutarBatida() {
   }
 
 
-}
-
-void zerarValores() {
-  for (int a = 0; a < i; a++) {
-    vetor[a] = 0;
-    numBatidas = 0;
-  }
 }
 int cont;
 
